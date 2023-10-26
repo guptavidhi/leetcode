@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string toGoatLatin(string sentence) {
+        vector<string> words;
+        string w="";
+        string suffix="ma";
+        
+        for(int i=0;i<sentence.length();i++){
+            if(sentence[i]!=' '){
+                w=w+sentence[i];
+            }
+            else{
+                words.push_back(w);
+                w="";
+            }
+        }
+        words.push_back(w);
+        string new_sen="";
+        for(int j=0;j<words.size();j++){
+            suffix=suffix+'a';
+            string nonvowel_beginning="";
+            if(!(words[j][0]=='a'||words[j][0]=='e'||words[j][0]=='i'||words[j][0]=='o'||words[j][0]=='u'||words[j][0]=='A'||words[j][0]=='E'||words[j][0]=='I'||words[j][0]=='O'||words[j][0]=='U')){
+                nonvowel_beginning=words[j][0];
+                cout<<nonvowel_beginning<<endl;
+                words[j]=words[j].substr(1);
+                // words[j][0]='';
+            }
+            words[j]=words[j]+nonvowel_beginning+suffix+' ';
+            new_sen=new_sen+words[j];
+        }
+        return new_sen.substr(0,new_sen.size()-1);
+        
+        
+    }
+};
